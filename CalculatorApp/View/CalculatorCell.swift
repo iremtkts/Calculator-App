@@ -2,6 +2,8 @@
 import UIKit
 
 class CalculatorCell: UICollectionViewCell {
+    
+    static let identifier = "ButtonCell"
 
     let label: UILabel = {
         let label = UILabel()
@@ -25,12 +27,15 @@ class CalculatorCell: UICollectionViewCell {
     
     func setupUI () {
         addSubview(label)
+        backgroundColor = .purple
+        
+        let extraSpace = self.frame.width - self.frame.height
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: topAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+         heightAnchor.constraint(equalToConstant: self.frame.height),
+         widthAnchor.constraint(equalToConstant: self.frame.height),
+         centerYAnchor.constraint(equalTo: self.centerYAnchor),
+         leadingAnchor.constraint(equalTo: self.leadingAnchor),
+         trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -extraSpace), ])
     }
 }

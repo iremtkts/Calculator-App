@@ -10,7 +10,8 @@ class CalculatorView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
-        collectionView.register(CalculatorCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderCell.identifier)
+        collectionView.register(CalculatorCell.self, forCellWithReuseIdentifier: CalculatorCell.identifier)
         return collectionView
     }()
     
@@ -28,10 +29,10 @@ class CalculatorView: UIView {
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 450)
+            self.collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: topAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }
