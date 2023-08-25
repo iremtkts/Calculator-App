@@ -11,7 +11,6 @@ class CalculatorCell: UICollectionViewCell {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 28)
         label.textColor = .white
-        label.backgroundColor = .gray
         return label
     }()
 
@@ -26,16 +25,17 @@ class CalculatorCell: UICollectionViewCell {
     }
     
     func setupUI () {
-        addSubview(label)
+        self.layer.cornerRadius = self.frame.size.height / 2
         backgroundColor = .purple
         
-        let extraSpace = self.frame.width - self.frame.height
+        addSubview(label)
         
         NSLayoutConstraint.activate([
-         heightAnchor.constraint(equalToConstant: self.frame.height),
-         widthAnchor.constraint(equalToConstant: self.frame.height),
-         centerYAnchor.constraint(equalTo: self.centerYAnchor),
-         leadingAnchor.constraint(equalTo: self.leadingAnchor),
-         trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -extraSpace), ])
+            label.topAnchor.constraint(equalTo:self.layoutMarginsGuide.topAnchor),
+            label.trailingAnchor.constraint(equalTo:self.layoutMarginsGuide.trailingAnchor),
+            label.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            label.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+        ])
+
     }
 }

@@ -8,10 +8,9 @@ class HeaderCell: UICollectionViewCell {
     let label: UILabel = {
       let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 28)
+        label.textAlignment = .right
+        label.font = UIFont.systemFont(ofSize: 45)
         label.textColor = .white
-        label.backgroundColor = .gray
         return label
     }()
     
@@ -25,15 +24,24 @@ class HeaderCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(currentCalcText: String) {
+        let newSize = currentCalcText.size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 45)])
+
+        if newSize.width <= self.label.frame.width {
+            self.label.text = currentCalcText
+        }
+    }
+
+    
     private func setupUI() {
-        self.backgroundColor = .blue
+        self.backgroundColor = .black
         self.addSubview(label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
             
         NSLayoutConstraint.activate([
-         self.label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+         self.label.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor, constant: -5),
          self.label.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-         self.label.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor),
+         self.label.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -35),
          ])
     }
 }

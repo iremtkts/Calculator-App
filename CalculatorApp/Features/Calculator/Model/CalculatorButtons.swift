@@ -2,7 +2,7 @@
 
 import Foundation
 
-enum CalculatorButtons {
+enum CalculatorButtons: Equatable {
     case allClear
     case plusMinus
     case percentage
