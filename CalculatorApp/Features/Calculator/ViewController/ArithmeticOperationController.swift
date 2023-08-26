@@ -28,8 +28,11 @@ class ArithmeticOperationsController {
     
     private(set) var previousNumber: String? = nil
     private(set) var previousOperation: CalculatorOperation? = nil
-    
-    
+
+}
+
+
+extension ArithmeticOperationsController {
     
     
     func didArithmeticOperationPressed(_ operation: CalculatorOperation, _ firstNumber: Double?, _ secondNumber: Double?) -> Double {
@@ -47,6 +50,31 @@ class ArithmeticOperationsController {
         }
     }
     
-   
+    func didPressedPlusMinusButton() {
+        if currentNumber == .firstNumber, var number = firstNumber {
+            if number.contains("-") {
+                number.removeFirst()
+            } else {
+                number.insert("-", at: number.startIndex)
+            }
+            
+            firstNumber = number
+            previousNumber = number
+            
+        } else if currentNumber == .secondNumber, var number = secondNumber {
+            if number.contains("-") {
+                number.removeFirst()
+            } else {
+                number.insert("-", at: number.startIndex)
+            }
+            
+            secondNumber = number
+            previousNumber = number
+        }
+    }
     
+    
+    func didPressedPercentageButton() {
+        
+    }
 }
